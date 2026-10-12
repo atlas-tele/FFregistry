@@ -144,3 +144,14 @@ def test_publish_goes_only_to_match_group_and_handles_errors(tg, make_match, rs,
     with pytest.raises(ServiceError):
         run(results.publish_results(bot, tg, OWNER, mid))
     assert res.published_snapshot(mid) is None  # nothing recorded when sending failed
+
+
+def test_start_in_group_says_online_and_records_group(tg):
+    from handlers.common import cmd_start
+    u = upd("supergroup", -777, PLAYER)
+    run(cmd_start(u, ctx(tg)))
+    assert "online" in sent(u).lower()
+    with tg.db.read() as conn:
+        from database import repositories as repo
+        assert repo.get_group(conn, -777) is not None
+        
