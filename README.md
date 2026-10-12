@@ -162,7 +162,7 @@ use *Upload files* inside that folder. Do this for `database`, `handlers`, `serv
 
 ### 5.6 Test it
 1. DM the bot `/start`, then `/admin` — you should see the panel (anyone else gets "not authorized").
-2. Add the bot to your group and send `/help` there → the bot records the group and DMs you; in `/admin` → **📡 Groups** tap **Authorize**.
+2. Add the bot to your group and send any command there (e.g. `/help` or `/slots`) → the bot records the group; in `/admin` → **📡 Groups** tap **Authorize**.
 3. `/admin` → **➕ Create Match** → follow the wizard → **🟢 Open registration now**.
 4. In the group, from a player account: `/register`, then `/slots`.
 5. Start the match, enter results (**📝 Submit Results**), preview, then **📢 Publish**; check `/points` in the group.
