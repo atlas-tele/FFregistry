@@ -1,0 +1,1 @@
+"""FFregistry web administration dashboard."""
