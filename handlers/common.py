@@ -230,22 +230,32 @@ def player_match(app: App, update: Update, args: list):
 
 
 # ---- basic commands ----------------------------------------------------
+def remember_group(app: App, chat) -> None:
+    """Record any group the bot is used in (unauthorized until the owner approves it)."""
+    if chat is not None and chat.type in GROUP_TYPES:
+        with app.db.transaction() as conn:
+            if repo.get_group(conn, chat.id) is None:
+                repo.upsert_group(conn, chat.id, chat.title or "")
+
+
 async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat, user = update.effective_chat, update.effective_user
     if chat is None or user is None:
         return
     app = get_app(context)
+    remember_group(app, chat)
     if chat.type == "private":
         extra = "\n\n🔧 You are an admin — send /admin to open the panel." if app.perms.is_admin(user.id) else ""
         await reply(update, "👋 <b>Welcome to FFregister!</b>\n\nI manage Free Fire custom-room registration, "
                             "slots, teams and results. Players register in the tournament group with /register." + extra)
     else:
-        await cmd_help(update, context)
+        await reply(update, "✅ Yes, I am online and ready! 🔥\nSend /help to see what I can do.")
 
 
 async def cmd_help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat = update.effective_chat
     app = get_app(context)
+    remember_group(app, chat)
     team_cmds = ""
     if chat and chat.type in GROUP_TYPES:
         m = app.ms.active_for_group(chat.id)
@@ -277,3 +287,4 @@ async def on_error(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
             await update.effective_message.reply_text("⚠️ Something went wrong. Please try again in a moment.")
         except TelegramError:
             pass
+            
