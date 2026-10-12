@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import logging
 import sys
+import warnings
 
 from telegram import BotCommand, Update
 from telegram.ext import (Application, CallbackQueryHandler, ChatMemberHandler, CommandHandler,
@@ -12,6 +13,10 @@ from config import Config, ConfigError, load_config
 from database import Database, repositories as repo, run_migrations
 from handlers import admin, leaderboards, matches, registration, results, slots, teams
 from handlers.common import build_app, cmd_cancel, cmd_help, cmd_start, on_error
+
+# Informational PTB notice about ConversationHandler(per_message=False) + CallbackQueryHandler.
+# Our conversation is tracked per chat+user on purpose, so the warning does not apply.
+warnings.filterwarnings("ignore", message=".*per_message=False.*CallbackQueryHandler.*")
 
 log = logging.getLogger("ffregister")
 
@@ -116,3 +121,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+  
