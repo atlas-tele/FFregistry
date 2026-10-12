@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#10111a"><meta name="description" content="FFregistry tournament control center">
+  <link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/static/icon.svg"><link rel="stylesheet" href="/static/app.css">
+  <title>FFregistry · Control Center</title>
+</head>
+<body>
+<div id="login" class="login-wrap hidden"><form id="loginForm" class="login-card"><div class="brand-mark">👑</div><p class="eyebrow">TOURNAMENT CONTROL CENTER</p><h1>Welcome back.</h1><p class="muted">Sign in to manage your FFregistry tournaments.</p><label>Username<input name="username" autocomplete="username" required maxlength="64"></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><button class="primary wide" type="submit">Sign in <span>↗</span></button><p id="loginError" class="error"></p></form></div>
+<div id="app" class="app hidden">
+  <aside class="sidebar"><a class="brand" href="#overview"><span class="brand-icon">👑</span><span>FFregistry<small>ADMIN CONSOLE</small></span></a><div class="nav-label">WORKSPACE</div><nav id="sideNav"><button class="nav active" data-page="overview">◈ <span>Overview</span></button><button class="nav" data-page="matches">▦ <span>Matches</span></button><button class="nav" data-page="players">♙ <span>Registrations</span></button><button class="nav" data-page="results">✦ <span>Results</span></button><button class="nav" data-page="groups">◎ <span>Groups</span></button><button class="nav" data-page="settings">⚙ <span>Settings</span></button></nav><div class="sidebar-bottom"><div class="online-dot"></div><span>Bot database connected</span><small>SQLite · Persistent storage</small></div></aside>
+  <main class="main"><header class="topbar"><div><p class="eyebrow" id="crumb">YOUR TOURNAMENTS</p><h2 id="pageTitle">Overview</h2></div><div class="top-actions"><span class="status-pill"><i></i> System online</span><button id="installBtn" class="ghost hidden">＋ Install app</button><button id="userChip" class="user-chip">A</button></div></header>
+    <div id="notice" class="notice hidden"></div><section id="content" aria-live="polite"></section><footer>FFregistry <span>•</span> Built for the next champion.</footer>
+  </main>
+  <nav class="mobile-nav" id="mobileNav"><button data-page="overview" class="active">◈<small>Home</small></button><button data-page="matches">▦<small>Matches</small></button><button data-page="players">♙<small>Players</small></button><button data-page="results">✦<small>Results</small></button><button data-page="settings">⚙<small>Settings</small></button></nav>
+</div><script src="/static/app.js" defer></script></body></html>
